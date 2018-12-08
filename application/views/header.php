@@ -1,7 +1,8 @@
 
-<!--<link href="<?php //echo base_url(); ?>assets/materialize/css/materialize.min.css" rel="stylesheet">-->
-<link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>assets/css/main.css" rel="stylesheet">
+
+<link href="<?php echo base_url(); ?>assets/library/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>assets/library/css/main.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>assets/library/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 
 
 
@@ -53,7 +54,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Login</button>
       </div>
     </div>

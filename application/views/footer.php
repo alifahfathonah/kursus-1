@@ -21,5 +21,6 @@
     </div>
   </div>
 </footer>
-<script src="<?php echo base_url(); ?>assets/jquery/jquery-1.10.2.js"></script>
-<script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/library/jquery/jquery-1.10.2.js"></script>
+<script src="<?php echo base_url(); ?>assets/library/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/library/jquery-ui/jquery-ui.min.js"></script>
