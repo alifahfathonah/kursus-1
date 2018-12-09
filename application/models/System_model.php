@@ -13,4 +13,9 @@ public function registrasi_member ($table, $data_member){
       $exe = $this->db->insert($table,$data_member);
         return $exe;
     }
+
+public function get_selected($table,$column, $data){
+    $result = $this->db->where($column,$data)->get($table)->num_rows();
+    return $result;
+}
 }

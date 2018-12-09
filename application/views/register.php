@@ -18,35 +18,37 @@
             Registrasi
         </div>
         <div class="card-body">
-        <form id="reg_form">
+        <form id="reg_form" role="form" data-toggle="validator">
             <div class="form-group row">
                 <label for="reg_nama" class="col-sm-4 col-form-label">Nama</label>
                 <div class="col-sm-8">
-                <input type="text" class="form-control" id="reg_nama" name="reg_nama" placeholder="Nama">
+                <input type="text" class="form-control" id="reg_nama" name="reg_nama" placeholder="Nama" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="reg_email" class="col-sm-4 col-form-label">email</label>
                 <div class="col-sm-8">
-                <input type="email" class="form-control" id="reg_email" name="reg_email" placeholder="email">
+                <input type="email" class="form-control" id="reg_email" name="reg_email" placeholder="email" data-error="email tidak valid!" required>
+                <div class="help-block with-errors"></div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="reg_password" class="col-sm-4 col-form-label">Password</label>
                 <div class="col-sm-8">
-                <input type="password" class="form-control" id="reg_password" name="reg_password" placeholder="password">
+                <input type="password" class="form-control" id="reg_password" name="reg_password" placeholder="password" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="reg_confirm" class="col-sm-4 col-form-label">Confirm Password</label>
                 <div class="col-sm-8">
-                <input type="password" class="form-control" id="reg_confirm" placeholder="password">
+                <input type="password" class="form-control" id="reg_confirm" data-match="#reg_password" data-match-error="Password tidak sama!" placeholder="password" required>
+                <div class="help-block with-errors"></div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="reg_alamat" class="col-sm-4 col-form-label">Alamat</label>
                 <div class="col-sm-8">
-                <textarea class="form-control" id="reg_alamat" rows="3"></textarea>
+                <textarea class="form-control" id="reg_alamat" rows="3" required></textarea>
                 </div>
             </div>
             <div class="form-group row">
@@ -61,7 +63,7 @@
             <div class="form-group row">
                 <label for="reg_tanggallahir" class="col-sm-4 col-form-label">Tanggal Lahir</label>
                 <div class="col-sm-8">
-                <input type="date" class="form-control" id="reg_tanggallahir">
+                <input type="date" class="form-control" id="reg_tanggallahir" required>
                 </div>
             </div>
             <div class="form-group row">
@@ -98,43 +100,101 @@
 </body>
 <?php include './application/views/footer.php' ?>
 </html>
-
+<script src="<?php echo base_url(); ?>assets/library/jquery/validator.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function(){
-       
-        $('#btn_submit').click(function(e){
-     var nama = $('#reg_nama').val();
+
+    /*$('#reg_form').validator().on('submit', function (e) {
+  if (!e.isDefaultPrevented()) {
+        var nama = $('#reg_nama').val();
         var email = $('#reg_email').val(); 
         var pass = $('#reg_password').val(); 
+        var confirm = $('#reg_confirm').val();
         var profesi = $('#reg_profesi').val();
         var alamat = $('#reg_alamat').val();
-        //var tgl_lahir= new Date (form.reg_tanggallahir.value);
+        
         var tanggal = $('#reg_tanggallahir').val();
         
         var gender = $("input[name='reg_gender']:checked").val();
         var link = 'register/reg_member';
-       //var data = $('#reg_form').serialized();
-        
         $.ajax({
             type: "POST",
             url: link,
             data: 'reg_nama='+nama+'&reg_email='+email+'&reg_password='+pass+'&reg_profesi='+profesi+'&reg_alamat='+alamat+'&reg_tanggallahir='+tanggal+'&reg_gender='+gender,
              //data:  data,             
             success: function(response){
-               /*if(response== "success")
+               if(response== "success")
                 {
                     
-                    window.location = '';
+                    window.location = 'register/welcome';
                 }
                 else
                 {
-                    
-                    $("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Login Gagal !</div>');
-                }*/
-                alert(response);
+                    alert(response);
+                    //$("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Login Gagal !</div>');
+                }
+                //alert(response);
             } 
         });
+
+  } 
+});*/
+    $(document).ready(function(){
+       
+        $('#btn_submit').click(function(e){
+     var nama = $('#reg_nama').val();
+        var email = $('#reg_email').val(); 
+        var pass = $('#reg_password').val(); 
+        var confirm = $('#reg_confirm').val();
+        var profesi = $('#reg_profesi').val();
+        var alamat = $('#reg_alamat').val();
+        
+        var tanggal = $('#reg_tanggallahir').val();
+        
+        var gender = $("input[name='reg_gender']:checked").val();
+        var link = 'register/reg_member';
+      
+     
+        $.ajax({
+            type: "POST",
+            url: link,
+            data: 'reg_nama='+nama+'&reg_email='+email+'&reg_password='+pass+'&reg_profesi='+profesi+'&reg_alamat='+alamat+'&reg_tanggallahir='+tanggal+'&reg_gender='+gender,
+             //data:  data,             
+            success: function(response){
+               if(response== "success")
+                {
+                    
+                    window.location = 'register/welcome';
+                }
+                else
+                {
+                    alert(response);
+                    //$("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Login Gagal !</div>');
+                }
+                //alert(response);
+            } 
+        });
+      
+        
+        
         e.preventDefault();
         });
     });
+/*(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+          
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();*/
 </script>

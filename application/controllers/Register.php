@@ -13,13 +13,14 @@ class Register extends CI_Controller{
     function reg_member(){
         $id_member = $this->uuid->v4();
         $tgl_lahir = $this->input->post('reg_tanggallahir');
-        //$date = DateTime::createFromFormat('dd/mm/yyyy',$tgl_lahir);
-        //$date = $date->format('Y-m-d');
+        $user_name = trim( $this->input->post('reg_nama'));
+        $pass = sha1(trim( $this->input->post('reg_password')));
+        $email = $this->input->post('reg_email');
         $data_member =array(
         'id_member' => $id_member,
-        'user_name' => $this->input->post('reg_nama'),
-        'email' => $this->input->post('reg_email'),
-        'password' => $this->input->post('reg_password'),
+        'user_name' => $user_name,
+        'email' => $email,
+        'password' => $pass,
         
         'profil' => $this->input->post('reg_profesi')
         
@@ -27,13 +28,17 @@ class Register extends CI_Controller{
         
         );
         $profile_member = array('id_member' => $id_member,
+        'nama' => $user_name,
         'alamat' => $this->input->post('reg_alamat'),
         'jenis_kelamin' => $this->input->post('reg_gender'),
         'tanggal_lahir' => $tgl_lahir,
         'tanggal_join' => date('Y-m-d'),
         );
+
+        $check_email = $this->system_model->get_selected('tb_member', 'email',$email);
         
-           $hasil = $this->system_model->registrasi_member('tb_member', $data_member);
+        if ($check_email == 0) {
+            $hasil = $this->system_model->registrasi_member('tb_member', $data_member);
             
             if ($hasil) {
                 $hasil2 = $this->system_model->registrasi_member('tb_profile', $profile_member);
@@ -50,5 +55,12 @@ class Register extends CI_Controller{
                 
             
             }
+        } else {
+            echo "email sudah terdaftar";
+        }
+           
+    }
+    function welcome(){
+        $this->load->view('welcome');
     }
 }
