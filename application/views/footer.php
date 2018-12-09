@@ -24,3 +24,36 @@
 <script src="<?php echo base_url(); ?>assets/library/jquery/jquery-1.10.2.js"></script>
 <script src="<?php echo base_url(); ?>assets/library/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/library/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#login_modal').on('click', '#btn_login', function(e) {
+           
+            var email = $('#email_login').val();
+            var pass = $('#password_login').val();
+
+            $.ajax({
+            type: "POST",
+            url: "auth/login",
+            data: 'email='+email+'&password='+pass,
+                      
+            success: function(response){
+               if(response== "success")
+                {
+                    window.location = '';
+                    //$('#kontain').empty();
+                    //$('#kontain').load('register/welcome')
+                   
+                }
+                else
+                {
+                    alert(response);
+                    //$("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Login Gagal !</div>');
+                }
+                //alert(response);
+            } 
+        });
+            
+            e.preventDefault();
+        });
+    });
+</script>

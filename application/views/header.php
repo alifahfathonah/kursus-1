@@ -26,8 +26,22 @@
     </ul>
     <form class="form-inline my-2 my-sm-0">
       <!--<input class="form-control mr-sm-2" type="search" placeholder="Search">-->
-      <a href="<?php echo base_url(); ?>register" class="btn btn-primary my-2 my-sm-0" role="button">Register</a>
-      <button class="btn btn-primary my-2 my-sm-0" type="button" data-toggle="modal" data-target="#login_modal">Login</button>
+      <?php 
+       if ($this->session->userdata('login_status')==false) {
+         ?>
+         
+         <a href="<?php echo base_url(); ?>register" class="btn btn-primary my-2 my-sm-0" role="button">Register</a>
+         <button class="btn btn-primary my-2 my-sm-0" type="button" data-toggle="modal" data-target="#login_modal">Login</button>
+         <?php
+       } else {
+         ?>
+          <a href="#" class="btn btn-primary my-2 my-sm-0" role="button">Profile</a>
+          <a href="<?php echo base_url(); ?>auth/logout" class="btn btn-primary my-2 my-sm-0" role="button">Logout</a>
+      <?php
+       }
+      
+      ?>
+      
     </form>
   </div>
 </nav>
@@ -42,20 +56,23 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form data-toggle="validator">
             <div class="form-group">
-                <label for="inputemail">ID or email</label>
-                <input type="text" class="form-control" id="id_login" placeholder="Enter ID or email">
+                <label for="inputemail">email</label>
+                <input type="email" class="form-control" id="email_login" placeholder="Enter email" required>
+                <div class="help-block with-errors"></div>
             </div>
             <div class="form-group">
                 <label for="inputpassword">Password</label>
-                <input type="password" class="form-control" id="password_login" placeholder="Password">
+                <input type="password" class="form-control" id="password_login" placeholder="Password" required>
+                <div class="help-block with-errors"></div>
             </div>
-        </form>
-      </div>
+       
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary" id="btn_login">Login</button>
+      </div>
+      </form>
       </div>
     </div>
   </div>

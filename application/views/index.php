@@ -5,11 +5,12 @@
     
     <?php include './application/views/header.php'; ?> 
 <body id="body">
+<div id="kontain">
 
     <h3 align="center">Welcome</h3>
     
-   <?php //echo $this->uuid->v4(); ?>
-    
+ 
+</div>    
 </body>
 <?php include './application/views/footer.php' ?>
 </html>

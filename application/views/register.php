@@ -9,7 +9,7 @@
 <?php include './application/views/header.php'; ?> 
 <body>
 
-    <div class="kontain">
+    <div class="kontain" id="kontain">
     
     <div class="row align-items-end">
     <div class="col-lg-6 offset-md-3">
@@ -162,8 +162,10 @@
             success: function(response){
                if(response== "success")
                 {
-                    
-                    window.location = 'register/welcome';
+                    //window.location = 'register/welcome';
+                    $('#kontain').empty();
+                    $('#kontain').load('register/welcome')
+                   
                 }
                 else
                 {
