@@ -8,7 +8,16 @@
     <?php include './application/views/header.php'; ?> 
 </head>
 <body>
-    <h3>Landing</h3>
+  <!-- jumbotron -->
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Tingkatkan <span>skill</span> anda<br>dengan <span>guru</span> yang tepat</h1>
+    <a href="#" class="btn btn-primary tombol">Daftar</a>
+  </div>
+</div>
+
+<!-- end jumbotron-->
 </body>
 </html>
 <?php include './application/views/footer.php' ?>

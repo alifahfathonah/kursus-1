@@ -18,6 +18,7 @@
             Registrasi
         </div>
         <div class="card-body">
+        <div id="daftar_status"></div>
         <form id="reg_form" role="form" data-toggle="validator">
             <div class="form-group row">
                 <label for="reg_nama" class="col-sm-4 col-form-label">Nama</label>
@@ -162,6 +163,7 @@
             success: function(response){
                if(response== "success")
                 {
+                    $("#daftar_status").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp;Pendaftaran Berhasil</div>');
                     //window.location = 'register/welcome';
                     $('#kontain').empty();
                     $('#kontain').load('register/welcome')
@@ -169,8 +171,8 @@
                 }
                 else
                 {
-                    alert(response);
-                    //$("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Login Gagal !</div>');
+                    //alert(response);
+                    $("#daftar_error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp;Pendaftaran Gagal!</div>');
                 }
                 //alert(response);
             } 

@@ -40,16 +40,15 @@
                if(response== "success")
                 {
                     window.location = '';
-                    //$('#kontain').empty();
-                    //$('#kontain').load('register/welcome')
+                    
                    
                 }
                 else
                 {
-                    alert(response);
-                    //$("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Login Gagal !</div>');
+                    //alert(response);
+                    $("#error").html('<div class="alert alert-danger alert-dismissible" role="alert"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Login Gagal !</div>');
                 }
-                //alert(response);
+               
             } 
         });
             
