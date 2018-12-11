@@ -24,6 +24,7 @@
 <script src="<?php echo base_url(); ?>assets/library/jquery/jquery-1.10.2.js"></script>
 <script src="<?php echo base_url(); ?>assets/library/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/library/jquery-ui/jquery-ui.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/library/jquery/validator.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#login_modal').on('click', '#btn_login', function(e) {
@@ -39,7 +40,7 @@
             success: function(response){
                if(response== "success")
                 {
-                    window.location = '';
+                    window.location = '/kursus';
                     
                    
                 }

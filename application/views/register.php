@@ -83,10 +83,10 @@
             <div class="row">
                 
                 <div class="col-sm-2 offset-sm-2">
-                <a href="<?php echo base_url(); ?>" class="btn btn-secondary">Cancel</a>
+                <a href="<?php echo base_url(); ?>" class="btn btn-secondary tombol">Cancel</a>
                 </div>
                 <div class="col-sm-2 offset-sm-4">
-                <button type="submit" name="submit" class="btn btn-success" id="btn_submit">Submit</button>
+                <button type="submit" name="submit" class="btn btn-success tombol" id="btn_submit">Submit</button>
                 </div>
             </div>
             </div>
@@ -101,7 +101,7 @@
 </body>
 <?php include './application/views/footer.php' ?>
 </html>
-<script src="<?php echo base_url(); ?>assets/library/jquery/validator.min.js"></script>
+
 <script type="text/javascript">
 
     /*$('#reg_form').validator().on('submit', function (e) {

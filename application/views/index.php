@@ -4,7 +4,7 @@
 
     
     <?php include './application/views/header.php'; ?> 
-<body id="body">
+<body id="body" style="background-color:brown">
 <div id="kontain">
 
     <h3 align="center">Welcome</h3>
