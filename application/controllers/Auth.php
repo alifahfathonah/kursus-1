@@ -10,7 +10,12 @@ class Auth extends CI_Controller{
         if ($this->session->userdata('login_status')==false) {
            $this->load->view('landing');
         } else{
-            $this->load->view('index');
+            if ($this->session->userdata('status_profil')=='guru') {
+                $this->load->view('guru/home');
+            }else {
+                $this->load->view('index');
+            }
+            
         }
         
     }

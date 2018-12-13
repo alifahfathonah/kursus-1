@@ -12,14 +12,18 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
         <a class="nav-item nav-link active" href="<?php echo base_url(); ?>">Home <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="#">Profile</a>
-        <a class="nav-item nav-link" href="#">Features</a>
-        <a class="nav-item nav-link" href="#">Tentang Kami</a>
+        
+        
         <?php if ($this->session->userdata('login_status')==false) {?>
+            <a class="nav-item nav-link" href="#">Features</a>
+            <a class="nav-item nav-link" href="#">Tentang Kami</a>
             <button class="btn btn-primary tombol" type="button" data-toggle="modal" data-target="#login_modal">Login</button>
             <?php
         } else { ?>
-             <a href="<?php echo base_url(); ?>auth/logout" class="btn btn-primary tombol" role="button">Logout</a>
+          <a class="nav-item nav-link" href="#">Profile</a>
+          <a class="nav-item nav-link" href="#">Features</a>
+          <a class="nav-item nav-link" href="#">Tentang Kami</a>
+          <a href="<?php echo base_url(); ?>auth/logout" class="btn btn-primary tombol" role="button">Logout</a>
         <?php   
         }
         ?>

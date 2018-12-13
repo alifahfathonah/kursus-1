@@ -9,7 +9,17 @@
   font-size: 32px;
 }
 
+.profil-photo{
+  height: 100px;
+  width: 100px;
+}
 
+.sub{
+  font-size: 14px;
+  color: #ACACAC;
+  font-weight: 200;
+  margin-top: -5px;
+}
 
 
 
