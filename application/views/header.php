@@ -11,18 +11,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto">
-        <a class="nav-item nav-link active" href="<?php echo base_url(); ?>">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link nav-menu active" href="<?php echo base_url(); ?>">Home <span class="sr-only">(current)</span></a>
         
         
         <?php if ($this->session->userdata('login_status')==false) {?>
-            <a class="nav-item nav-link" href="#">Features</a>
-            <a class="nav-item nav-link" href="#">Tentang Kami</a>
+            <a class="nav-item nav-link nav-menu" href="#">Features</a>
+            <a class="nav-item nav-link nav-menu" href="#">Tentang Kami</a>
             <button class="btn btn-primary tombol" type="button" data-toggle="modal" data-target="#login_modal">Login</button>
             <?php
         } else { ?>
-          <a class="nav-item nav-link" href="#">Profile</a>
-          <a class="nav-item nav-link" href="#">Features</a>
-          <a class="nav-item nav-link" href="#">Tentang Kami</a>
+          <a class="nav-item nav-link nav-menu" href="<?php echo base_url(); ?>member/profile">Profile</a>
+          <a class="nav-item nav-link nav-menu" href="#">Features</a>
+          <a class="nav-item nav-link nav-menu" href="#">Tentang Kami</a>
           <a href="<?php echo base_url(); ?>auth/logout" class="btn btn-primary tombol" role="button">Logout</a>
         <?php   
         }

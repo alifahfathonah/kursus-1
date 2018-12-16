@@ -27,8 +27,8 @@ class Register extends CI_Controller{
         
         
         );
-        $profile_member = array('id_member' => $id_member,
-        'nama' => $user_name,
+        $profile_member = array(
+        'id_member' => $id_member,
         'alamat' => $this->input->post('reg_alamat'),
         'jenis_kelamin' => $this->input->post('reg_gender'),
         'tanggal_lahir' => $tgl_lahir,

@@ -32,7 +32,7 @@
 
 /* jumbotron */
 
-.jumbotron{
+.landing-jumbotron{
   background-image: url('../../img/bg/jumbotron-bg.jpg');
   background-size: cover;
   height: 540px;
@@ -41,12 +41,12 @@
 
 }
 
-.jumbotron .container{
+.landing-jumbotron .container{
   position: relative;
   z-index: 1;
 }
 
-.jumbotron::after{
+.landing-jumbotron::after{
   content: '';
   display: block;
   width: 100%;
@@ -56,7 +56,7 @@
   bottom: 0;
 }
 
-.jumbotron .display-4{
+.landing-jumbotron .display-4{
   color: white;
   
   margin-top: 150px;
@@ -66,7 +66,7 @@
   margin-bottom: 30px;
 }
 
-.jumbotron .display-4 span{
+.landing-jumbotron .display-4 span{
   font-weight: 500;
 }
 
@@ -141,16 +141,16 @@
 
 @media (min-width: 992px) { 
 
-  .navbar-brand, .nav-link {
+  .navbar-brand, .nav-menu {
     color: white !important;
     text-shadow: 1px 1px 1px rgba(0,0,0,0.7);
   }
 
-  .nav-link{
+  .nav-menu{
     text-transform: uppercase;
     margin-right: 30px;
   }
-  .nav-link:hover::after{
+  .nav-menu:hover::after{
     content: '';
     display: block;
     border-bottom: 3px solid rgb(44, 110, 250);
@@ -160,11 +160,11 @@
     margin-bottom: -8px;
   }
 
-  .jumbotron{
+  .landing-jumbotron{
     margin-top: -75px;
     height: 640px;
   }
-  .jumbotron .display-4{
+  .landing-jumbotron .display-4{
     font-size: 62px;
   }
 

@@ -31,5 +31,18 @@ public function get_selected($table,$column, $data){
     return $result;
 }
 
+public function get_where($table,$column, $data){
+    $result = $this->db->get_where($table, array($column=>$data))->result_array();
+    return $result;
+}
+
+public function update_data($table, $data, $kondisi){
+    $this->db->set($data);
+    $this->db->where($kondisi);
+    $this->db->update($table);
+
+    return true;
+}
+
 
 }

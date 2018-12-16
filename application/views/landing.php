@@ -10,7 +10,7 @@
 <body>
   <!-- jumbotron -->
 
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid landing-jumbotron">
   <div class="container">
     <h1 class="display-4">Tingkatkan <span>skill</span> anda<br>dengan <span>guru</span> yang tepat</h1>
     <a href="<?php echo base_url(); ?>register" class="btn btn-primary tombol" role="button">Daftar</a>
