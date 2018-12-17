@@ -4,6 +4,7 @@ class Member extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('system_model');
+        $this->load->helper(array('form', 'url'));
     }
 
     function index(){
@@ -12,7 +13,9 @@ class Member extends CI_Controller{
                $this->load->view('landing');
             } else{
                 if ($this->session->userdata('status_profil')=='guru') {
-                    $this->load->view('guru/home');
+                    $id = $this->session->userdata('id_member');
+                    $this->data['profil'] = $this->system_model->get_where('tb_profile','id_member',$id);
+                    $this->load->view('guru/home', $this->data);
                 }else {
                     $this->load->view('index');
                 }
@@ -100,33 +103,45 @@ class Member extends CI_Controller{
 
     function upload_foto(){
 
-        //$file = $this->input->post('file');
+        //$file = $_FILES['upload_foto'];
 
         $config['upload_path']          = './assets/img/profile';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 10000;
         $config['max_width']            = 5000;
         $config['max_height']           = 5000;
-
+        $config['encrypt_name']         = TRUE;
         $this->load->library('upload', $config);
 
-        if ( ! $this->upload->do_upload('upload_foto'))
+        if ( ! $this->upload->do_upload('foto_member'))
         {
-                $error = array('error' => $this->upload->display_errors());
-
-                //$this->load->view('upload_form', $error);
-                foreach ($error as $key ) {
-                    echo $key;
-                }
+               
+                    echo "error";
+               
                 
         }
         else
         {
-                $data = array('upload_data' => $this->upload->data());
+               $id = $this->session->userdata('id_member');
+                $img = $this->upload->data();
+                $gambar = $img['file_name'];
 
-                //$this->load->view('upload_success', $data);
-                echo $data;
+                $data = array(
+                    'link_foto'=> $gambar
+                );
+
+                $kondisi = array(
+                    'id_member' =>$id
+                );
+            $update = $this->system_model->update_data('tb_profile',$data,$kondisi);
+            if ($update) {
+                echo 'success';
+            }else {
+                echo "error";
+            }
+                
         }
+       
     }
 
 }

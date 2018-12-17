@@ -29,6 +29,8 @@ foreach ($profil as $d) {
 if ($foto == NULL) {
     $foto = base_url().'assets/img/user.png';
    
+} else {
+    $foto = base_url().'assets/img/profile/'.$foto;
 }
 ?>
     <div class="container">
@@ -36,11 +38,22 @@ if ($foto == NULL) {
             <div class="col-6">
                 <div class="row">
                     <div class="col-sm">
-                        <form action="" id="form_profile">
+                    <?php //echo $error;?>
+
+                        <?php //echo form_open_multipart('member/upload_foto');?>
+                        <form enctype="multipart/form-data" accept-charset="utf-8" name="form_foto" id="form_foto"  method="post" action="">
                         <div class="form-group row">
-                           <i ><img src="<?php echo $foto; ?>" alt="" class="profil-photo"></i>
-                           <input type="file" class="form-control-file" id="upload_foto" name="upload_foto">
+                        <i ><img src="<?php echo $foto; ?>" alt="" class="profil-photo"></i>
+                        <input type="file" class="form-control-file" id="foto_member" name="foto_member">
                         </div>
+
+                       
+
+                        </form>
+                    
+                    
+                       
+                        <form action="" id="profile_form">
                         <div class="form-group row">
                             <label for="nama_member" class="col-sm-2 col-form-label">Nama</label>
                             <div class="col-sm-6">
@@ -152,8 +165,8 @@ if ($foto == NULL) {
             e.preventDefault();
        });
 
-       $('#upload_foto').change(function(){
-        if ($('#upload_foto').val()!='') {
+       $('#foto_member').change(function(){
+        if ($('#foto_member').val()!='') {
                
               upload_foto();
            }
@@ -227,34 +240,35 @@ if ($foto == NULL) {
      }
 
      function upload_foto() {
-         //var file = $('#upload_foto').val();
-         //var form_data = new FormData($('#form_profile')[0]);
-         var inputFile = $('input[name=upload_foto]');
-         var fileToUpload = inputFile[0].files[0];
-         var form_data = new FormData();
-            form_data.append("upload_foto", fileToUpload);
+         var file = $('#upload_foto').val();
+        
+         var formData = new FormData( $("#form_foto")[0] );
          var link = 'upload_foto';
         
          $.ajax({
            type: "POST",
            url: link,
-           //data: 'file='+file,
-           data: form_data,
-                    
+           //secureuri: false,
+           //fileElementId: 'upload_foto',
+           async: false,
+           cache: false,
+           data	: formData, 
+           contentType : false,
+            processData : false,      
            success: function(response){
-              if(response== "success")
-               {
+          if(response== "success")
+              {
                 
-                alert(response);
-                //window.location = 'profile';
+               alert(response);
+                window.location = 'profile';
                   
-               }
-               else
+             }
+            else
                {
                    alert(response);
-                   //$("#error_ganti").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp;Penggantian Password Gagal!</div>');
-               }
-               //alert(response);
+            //        //$("#error_ganti").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp;Penggantian Password Gagal!</div>');
+              }
+               //alert(data.msg);
            } 
        });
      }

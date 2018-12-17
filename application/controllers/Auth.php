@@ -11,7 +11,10 @@ class Auth extends CI_Controller{
            $this->load->view('landing');
         } else{
             if ($this->session->userdata('status_profil')=='guru') {
-                $this->load->view('guru/home');
+                $id = $this->session->userdata('id_member');
+                $this->data['profil'] = $this->system_model->get_where('tb_profile','id_member',$id);
+                $this->load->view('guru/home', $this->data);
+                
             }else {
                 $this->load->view('index');
             }

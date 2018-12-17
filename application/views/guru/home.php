@@ -7,13 +7,19 @@
     <title>Home</title>
     <?php include './application/views/header.php'; ?> 
 </head>
+<?php 
+foreach ($profil as $key ) {
+   $foto = $key['link_foto'];
+}
+$foto = base_url().'assets/img/profile/'.$foto;
+?>
 <body>
 <!--container-->
 <div class="container">
       <div class="row justify-content-center">
             <div class="col-lg-10">
             <div class="media">
-            <img class="align-self-start mr-3 rounded-circle profil-photo" src="<?php echo base_url();?>assets/img/user.png" alt="Generic placeholder image">
+            <img class="align-self-start mr-3 rounded-circle profil-photo" src="<?php echo $foto;?>" alt="Generic placeholder image">
             <div class="media-body">
                 <h5 class="mt-0"><?php echo $this->session->userdata('nama'); ?></h5>
                 <p class="sub"><?php echo $this->session->userdata('email'); ?></p>
