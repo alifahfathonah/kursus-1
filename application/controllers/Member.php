@@ -71,12 +71,13 @@ class Member extends CI_Controller{
         $alamat = $this->input->post('alamat');
         $telp = $this->input->post('telp');
         $pend = $this->input->post('pend');
-
+        $desk = $this->input->post('desk');
         $data = array(
             
             'alamat'=> $alamat,
             'nomer_telp'=> $telp,
-            'pendidikan' => $pend
+            'pendidikan' => $pend,
+            'deskripsi' => $desk
         );
 
         $col = array(
@@ -103,14 +104,16 @@ class Member extends CI_Controller{
 
     function upload_foto(){
 
-        //$file = $_FILES['upload_foto'];
+        
+        $id = $this->session->userdata('id_member');
 
         $config['upload_path']          = './assets/img/profile';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 10000;
         $config['max_width']            = 5000;
         $config['max_height']           = 5000;
-        $config['encrypt_name']         = TRUE;
+        $config['overwrite']            = TRUE;
+        $config['file_name']            = $id;
         $this->load->library('upload', $config);
 
         if ( ! $this->upload->do_upload('foto_member'))

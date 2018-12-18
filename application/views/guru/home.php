@@ -10,6 +10,7 @@
 <?php 
 foreach ($profil as $key ) {
    $foto = $key['link_foto'];
+   $desk = $key['deskripsi'];
 }
 $foto = base_url().'assets/img/profile/'.$foto;
 ?>
@@ -24,7 +25,7 @@ $foto = base_url().'assets/img/profile/'.$foto;
                 <h5 class="mt-0"><?php echo $this->session->userdata('nama'); ?></h5>
                 <p class="sub"><?php echo $this->session->userdata('email'); ?></p>
                 
-                <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                <p><?php echo $desk; ?></p>
             </div>
             </div>
             </div>
@@ -76,7 +77,7 @@ $foto = base_url().'assets/img/profile/'.$foto;
       </div>
       <div class="modal-body">
         <div class="container">
-        <form data-toggle="validator">
+        <form data-toggle="validator" id="buat_kursus">
         <div class="form-group row">
                 <label for="kategori_kursus" class="col-sm-4 col-form-label">Kategori</label>
                 <div class="col-sm-8">
@@ -88,9 +89,15 @@ $foto = base_url().'assets/img/profile/'.$foto;
                 </div>
             </div>
             <div class="form-group row">
-                <label for="bidang_kursus" class="col-sm-4 col-form-label">Bidang kursus</label>
-                <div class="col-sm-8">
-                <input type="text" class="form-control" id="bidang_kursus" name="bidang_kursus" placeholder="Bidang" required>
+                <label for="biaya_kursus" class="col-sm-4 col-form-label">Biaya / pertemuan</label>
+                <div class="col-sm-6 my-1">
+                <label class="sr-only" for="biaya_kursus"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                    <div class="input-group-text">Rp</div>
+                    </div>
+                    <input type="number" class="form-control" id="biaya_kursus" name="biaya_kursus" placeholder="0">
+                </div>
                 </div>
             </div>
             <div class="form-group row">
@@ -116,9 +123,24 @@ $foto = base_url().'assets/img/profile/'.$foto;
                 <label for="jumlah_kursus" class="col-sm-4 col-form-label">Jumlah Pertemuan</label>
                 <div class="col-sm-4">
                 <input type="number" class="form-control" id="jumlah_kursus" name="jumlah_kursus" placeholder="" required>
-                <label for="jumlah_kursus" class="">Kali</label>
+                
                 </div>
+                <label for="jumlah_kursus" class="">Kali</label>
             </div>
+            <div class="form-group row">
+                <label for="point_kursus" class="col-sm-4 col-form-label">Point Kelulusan</label>
+                <div class="col-sm-4">
+                <input type="number" class="form-control" id="point_kursus" name="point_kursus" placeholder="" required>
+                
+                </div>
+                <label for="jumlah_kursus" class="">point</label>
+            </div>
+            <div class="form-group row">
+                <label for="deskripsi_kursus" class="col-sm-2 col-form-label">Deskripsi Kursus</label>
+                <div class="col-sm-10">
+                <textarea class="form-control" id="deskripsi_kursus" name="deskripsi_kursus" rows="3"required></textarea>
+                </div>
+            </div>  
            
             <div id="error"></div>
       <div class="modal-footer">

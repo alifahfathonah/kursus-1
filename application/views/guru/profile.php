@@ -25,6 +25,7 @@ foreach ($profil as $d) {
     $telp = $d['nomer_telp'];
     $pendidikan = $d['pendidikan'];
     $foto = $d['link_foto'];
+    $desk = $d['deskripsi'];
 }
 if ($foto == NULL) {
     $foto = base_url().'assets/img/user.png';
@@ -75,7 +76,7 @@ if ($foto == NULL) {
                         <div class="form-group row">
                             <label for="alamat_member" class="col-sm-2 col-form-label">Alamat</label>
                             <div class="col-sm-10">
-                            <textarea class="form-control" id="alamat_member" rows="3"required><?php echo $alamat; ?></textarea>
+                            <textarea class="form-control" id="alamat_member" rows="2"required><?php echo $alamat; ?></textarea>
                             </div>
                         </div>   
                         <div class="form-group row">
@@ -89,7 +90,13 @@ if ($foto == NULL) {
                             <div class="col-sm-6">
                             <input type="text" class="form-control" id="pend_member" value="<?php echo $pendidikan; ?>">
                             </div>
-                        </div>   
+                        </div>  
+                        <div class="form-group row">
+                            <label for="deskripsi_member" class="col-sm-2 col-form-label">Tentang Anda</label>
+                            <div class="col-sm-10">
+                            <textarea class="form-control" id="deskripsi_member" name="deskripsi_member" rows="3"><?php echo $desk; ?></textarea>
+                            </div>
+                        </div>    
                         <div class="row">
                 
                             <div class="col-sm-2 offset-sm-2">
@@ -212,6 +219,7 @@ if ($foto == NULL) {
         var id = '<?php echo $id; ?>';
         var telp = $('#telp_member').val();
         var pend = $('#pend_member').val();
+        var desk = $('#deskripsi_member').val();
         
         var link = 'update_profile';
      
@@ -219,7 +227,7 @@ if ($foto == NULL) {
        $.ajax({
            type: "POST",
            url: link,
-           data: 'nama='+nama+'&alamat='+alamat+'&id='+id+'&telp='+telp+'&pend='+pend,
+           data: 'nama='+nama+'&alamat='+alamat+'&id='+id+'&telp='+telp+'&pend='+pend+'&desk='+desk,
                     
            success: function(response){
               if(response== "success")
@@ -259,7 +267,7 @@ if ($foto == NULL) {
           if(response== "success")
               {
                 
-               alert(response);
+              // alert(response);
                 window.location = 'profile';
                   
              }
@@ -268,7 +276,7 @@ if ($foto == NULL) {
                    alert(response);
             //        //$("#error_ganti").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp;Penggantian Password Gagal!</div>');
               }
-               //alert(data.msg);
+              
            } 
        });
      }
