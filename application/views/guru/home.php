@@ -13,6 +13,8 @@ foreach ($profil as $key ) {
    $desk = $key['deskripsi'];
 }
 $foto = base_url().'assets/img/profile/'.$foto;
+
+
 ?>
 <body>
 <!--container-->
@@ -56,6 +58,27 @@ $foto = base_url().'assets/img/profile/'.$foto;
                         <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#newkursus_modal">Buat Kursus</button>
                         </div>
                     </div>
+                    
+                    <?php foreach ($kursus as $y) { ?>
+                    <div class="row">
+                    <div class="card">
+                        <div class="card-header">
+                        <?php echo $y['kategori_kursus'];?>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><?php  echo $y['judul_kursus']; ?></h5>
+                            <p class="card-text"><?php  echo $y['deskripsi_kursus']; ?></p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                        <div class="card-footer text-muted">
+                            <?php  echo $y['tgl_dibuat']; ?>
+                        </div>
+                    </div>
+                    </div>
+                <?php
+                }
+                ?>
+                    
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                 Nilai
@@ -178,7 +201,7 @@ $(document).ready(function(){
               {
                 
                alert('Data berhasil diinput');
-                 window.location = '';
+                 window.location = '<?php base_url(); ?>';
                   
              }
             else

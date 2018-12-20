@@ -40,7 +40,7 @@
             success: function(response){
                if(response== "success")
                 {
-                    window.location = '/kursus';
+                    window.location = '<?php echo base_url(); ?>';
                     
                    
                 }
