@@ -147,4 +147,31 @@ class Member extends CI_Controller{
        
     }
 
+    function new_kursus(){
+
+        $id_member = $this->session->userdata('id_member');
+        $id_kursus = $this->uuid->v4();
+        $tgl = date('Y-m-d');
+        $data = array(
+            'id_kursus'=> $id_kursus,
+            'id_guru'=> $id_member,
+            'kategori_kursus'=> $this->input->post('kategori_kursus'),
+            'harga_kursus'=> $this->input->post('biaya_kursus'),
+            'judul_kursus' => $this->input->post('judul_kursus'),
+            'level_kursus' => $this->input->post('level_kursus'),
+            'point_kelulusan' => $this->input->post('point_kursus'),
+            'durasi_kursus' => $this->input->post('jumlah_kursus'),
+            'deskripsi_kursus' => $this->input->post('deskripsi_kursus'),
+            'tgl_dibuat' => $tgl
+        );
+
+        $simpan = $this->system_model->insert_into ('tb_kursus',$data);
+
+        if ($simpan) {
+            echo 'success';
+        }else{
+            echo 'gagal';
+        }
+    }
+
 }

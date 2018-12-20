@@ -38,10 +38,10 @@ class Register extends CI_Controller{
         $check_email = $this->system_model->get_selected('tb_member', 'email',$email);
         
         if ($check_email == 0) {
-            $hasil = $this->system_model->registrasi_member('tb_member', $data_member);
+            $hasil = $this->system_model->insert_into('tb_member', $data_member);
             
             if ($hasil) {
-                $hasil2 = $this->system_model->registrasi_member('tb_profile', $profile_member);
+                $hasil2 = $this->system_model->insert_into('tb_profile', $profile_member);
                  if ($hasil2) {
                     echo "success";
                  }  else {

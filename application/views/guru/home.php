@@ -88,18 +88,7 @@ $foto = base_url().'assets/img/profile/'.$foto;
                     </select>
                 </div>
             </div>
-            <div class="form-group row">
-                <label for="biaya_kursus" class="col-sm-4 col-form-label">Biaya / pertemuan</label>
-                <div class="col-sm-6 my-1">
-                <label class="sr-only" for="biaya_kursus"></label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                    <div class="input-group-text">Rp</div>
-                    </div>
-                    <input type="number" class="form-control" id="biaya_kursus" name="biaya_kursus" placeholder="0">
-                </div>
-                </div>
-            </div>
+            
             <div class="form-group row">
                 <label for="level_kursus" class="col-sm-4 col-form-label">Level Kursus</label>
                 <div class="col-sm-8">
@@ -110,6 +99,18 @@ $foto = base_url().'assets/img/profile/'.$foto;
                         <option value="sma">Lanjut (SMA)</option>
                         <option value="mahir">Mahir</option>
                     </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="biaya_kursus" class="col-sm-4 col-form-label">Biaya / pertemuan</label>
+                <div class="col-sm-6 my-1">
+                <label class="sr-only" for="biaya_kursus"></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                    <div class="input-group-text">Rp</div>
+                    </div>
+                    <input type="number" class="form-control" id="biaya_kursus" name="biaya_kursus" placeholder="0">
+                </div>
                 </div>
             </div>
 
@@ -156,3 +157,44 @@ $foto = base_url().'assets/img/profile/'.$foto;
 </body>
 <?php include './application/views/footer.php' ?>
 </html>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    $('#create_kursus').click(function(e) {
+        
+        var formdata = new FormData( $("#buat_kursus")[0] );
+        var link = 'member/new_kursus';
+        
+         $.ajax({
+           type: "POST",
+           url: link,
+           data	: formdata, 
+           contentType : false,
+            processData : false,      
+           success: function(response){
+          if(response== "success")
+              {
+                
+               alert('Data berhasil diinput');
+                 window.location = '';
+                  
+             }
+            else
+               {
+                    alert(response);
+                //$("#error_ganti").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp;Penggantian Password Gagal!</div>');
+               }
+              
+           } 
+       });
+            
+
+        e.preventDevault();
+    });
+
+
+});
+
+</script>
