@@ -61,14 +61,16 @@ $foto = base_url().'assets/img/profile/'.$foto;
                     
                     <?php foreach ($kursus as $y) { ?>
                     <div class="row">
-                    <div class="card">
+                    <div class="card list-kursus"  >
                         <div class="card-header">
                         <?php echo $y['kategori_kursus'];?>
+                        <div class="col-sm ml-auto">Harga</div>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><?php  echo $y['judul_kursus']; ?></h5>
                             <p class="card-text"><?php  echo $y['deskripsi_kursus']; ?></p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="member/edit_kursus?id=<?php echo $y['id_kursus'] ?>" >Edit</a>
+                            
                         </div>
                         <div class="card-footer text-muted">
                             <?php  echo $y['tgl_dibuat']; ?>
@@ -182,6 +184,10 @@ $foto = base_url().'assets/img/profile/'.$foto;
 </html>
 
 <script type="text/javascript">
+//  function reply_click(clicked_id)
+// {
+//     alert(clicked_id);
+// }
 
 $(document).ready(function(){
 
@@ -216,6 +222,13 @@ $(document).ready(function(){
 
         e.preventDevault();
     });
+
+    // $('.list-kursus').click(function(){
+    //     var x = document.getElementsByClassName("list-kursus")[0].id;
+    //     alert(x);
+    // });
+
+   
 
 
 });

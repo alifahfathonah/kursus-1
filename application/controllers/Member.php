@@ -175,4 +175,11 @@ class Member extends CI_Controller{
         }
     }
 
+    function edit_kursus(){
+        $id = $this->input->get('id');
+        $this->data['kursus'] = $this->system_model->get_where('tb_kursus','id_kursus',$id);
+        $this->load->view('guru/edit_kursus', $this->data);
+      
+    }
+
 }
