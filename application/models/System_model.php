@@ -44,5 +44,11 @@ public function update_data($table, $data, $kondisi){
     return true;
 }
 
+public function delete_data($table, $kondis){
+    $this->db->delete($table, $kondis);
+
+    return true;
+}
+
 
 }

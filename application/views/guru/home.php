@@ -61,10 +61,15 @@ $foto = base_url().'assets/img/profile/'.$foto;
                     
                     <?php foreach ($kursus as $y) { ?>
                     <div class="row">
-                    <div class="card list-kursus"  >
+                    <div class="card col-lg list-kursus"  >
                         <div class="card-header">
-                        <?php echo $y['kategori_kursus'];?>
-                        <div class="col-sm ml-auto">Harga</div>
+                            <div class="row">
+                                <div class="col-4">
+                                <?php echo $y['kategori_kursus'];?>
+                                </div>
+                            <div class="col-lg ml-auto">Rp <?= number_format($y['harga_kursus'],2,",","."); ?></div>
+                            <?php  echo $y['tgl_dibuat']; ?>
+                            </div>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><?php  echo $y['judul_kursus']; ?></h5>
@@ -72,9 +77,7 @@ $foto = base_url().'assets/img/profile/'.$foto;
                             <a href="member/edit_kursus?id=<?php echo $y['id_kursus'] ?>" >Edit</a>
                             
                         </div>
-                        <div class="card-footer text-muted">
-                            <?php  echo $y['tgl_dibuat']; ?>
-                        </div>
+                       
                     </div>
                     </div>
                 <?php
@@ -207,7 +210,7 @@ $(document).ready(function(){
               {
                 
                alert('Data berhasil diinput');
-                 window.location = '<?php base_url(); ?>';
+                 window.location = '<?php echo base_url(); ?>';
                   
              }
             else

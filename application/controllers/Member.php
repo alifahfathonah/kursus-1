@@ -182,4 +182,48 @@ class Member extends CI_Controller{
       
     }
 
+    function update_kursus(){
+        $id_kursus = $this->input->post('id_kursus');
+
+        $data = array(
+            'kategori_kursus'=> $this->input->post('kategori_kursus'),
+            'harga_kursus'=> $this->input->post('biaya_kursus'),
+            'judul_kursus' => $this->input->post('judul_kursus'),
+            'level_kursus' => $this->input->post('level_kursus'),
+            'point_kelulusan' => $this->input->post('point_kursus'),
+            'durasi_kursus' => $this->input->post('jumlah_kursus'),
+            'deskripsi_kursus' => $this->input->post('deskripsi_kursus')
+            
+        );
+        //echo $id_kursus;
+
+        $kondisi = array(
+            'id_kursus' => $id_kursus
+        );
+
+        $ganti = $this->system_model->update_data('tb_kursus',$data,$kondisi);
+
+        if ($ganti) {
+           echo 'success';
+           
+        } else {
+            echo 'gagal update';
+        }
+    }
+
+    function delete_kursus(){
+        $id_kursus = $this->input->post('id_kursus');
+        $kondisi = array(
+            'id_kursus' => $id_kursus
+        );
+
+        $hapus = $this->system_model->delete_data('tb_kursus',$kondisi);
+        if ($hapus) {
+           echo 'success';
+        } else {
+            echo 'Gagal hapus';
+        }
+
+    }
+
 }
