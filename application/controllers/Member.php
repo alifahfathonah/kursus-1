@@ -18,7 +18,7 @@ class Member extends CI_Controller{
                     $this->data['kursus'] = $this->system_model->get_where('tb_kursus','id_guru',$id);
                     $this->load->view('guru/home', $this->data);
                 }else {
-                    $this->load->view('index');
+                    $this->load->view('siswa/home');
                 }
                 
             }
@@ -224,6 +224,27 @@ class Member extends CI_Controller{
             echo 'Gagal hapus';
         }
 
+    }
+
+    function delete_member(){
+        $id_member = $this->input->post('id_member');
+
+        $kondisi = array(
+            'id_member' => $id_member
+        );
+
+        $hapus = $this->system_model->delete_data('tb_member',$kondisi);
+        if ($hapus) {
+            
+            $this->session->sess_destroy();
+           echo 'success';
+        } else {
+            echo 'Gagal hapus';
+        }
+    }
+
+    function kursus(){
+        $this->load->view('guru/kursus');
     }
 
 }

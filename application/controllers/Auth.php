@@ -17,7 +17,10 @@ class Auth extends CI_Controller{
                 $this->load->view('guru/home', $this->data);
                 
             }else {
-                $this->load->view('index');
+                $id = $this->session->userdata('id_member');
+                $this->data['profil'] = $this->system_model->get_where('tb_profile','id_member',$id);
+                $this->data['kursus'] = $this->system_model->get_where('tb_kursus','id_guru',$id);
+                $this->load->view('siswa/home',$this->data);
             }
             
         }

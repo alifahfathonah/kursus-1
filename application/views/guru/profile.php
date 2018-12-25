@@ -97,17 +97,20 @@ if ($foto == NULL) {
                             <textarea class="form-control" id="deskripsi_member" name="deskripsi_member" rows="3"><?php echo $desk; ?></textarea>
                             </div>
                         </div>    
-                        <div class="row">
+                        <div class="row justify-content-center">
                 
-                            <div class="col-sm-2 offset-sm-2">
+                            <div class="col-sm-4">
                             <a href="<?php echo base_url(); ?>" class="btn btn-secondary tombol">Cancel</a>
                             </div>
-                            <div class="col-sm-2 offset-sm-2">
+                            <div class="col-sm-4 align-self-center">
                             <button type="submit" name="submit" class="btn btn-success tombol" id="btn_update">Update</button>
                             </div>
                         </div>
                         </form>
                     </div>
+                </div>
+                <div class="row justify-content-center" style="margin-top:40px">
+                    <input type="button" class="btn btn-danger tombol" data-toggle="modal" data-target="#hapus_profile" value="Delete">
                 </div>
             </div>
         </div>
@@ -146,6 +149,33 @@ if ($foto == NULL) {
         <button type="button" class="btn btn-primary tombol" id="ganti_pass">Ganti</button>
       </div>
       </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal hapus-->
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true" id="hapus_profile">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Hapus Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Apakah Anda akan menghapus profile <?= $nama; ?></p>
+      </div>
+      <div class="modal-footer">
+          <div class="row justify-content-center">
+              <div class="col align-self-start">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                <div class="col align-self-end">
+                 <button type="button" class="btn btn-danger" id="konfirm_hapus">Yes</button>
+                 </div>
+        </div>
       </div>
     </div>
   </div>
@@ -280,5 +310,34 @@ if ($foto == NULL) {
            } 
        });
      }
+
+     $('#konfirm_hapus').click(function(){
+            var id_member = '<?= $id; ?>';
+
+           
+            var link = 'delete_member';
+
+            $.ajax({
+            type: "POST",
+            url: link,
+            data	: 'id_member='+id_member, 
+                
+            success: function(response){
+            if(response== "success")
+                {
+                    
+               alert(response);
+                    window.location.replace('<?php echo base_url(); ?>');
+                    
+            }
+            else
+                {
+                    alert(response);
+           
+                }
+                
+             } 
+            });
+     });
    });
 </script>

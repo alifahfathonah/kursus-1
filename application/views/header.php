@@ -15,13 +15,13 @@
         
         
         <?php if ($this->session->userdata('login_status')==false) {?>
-            <a class="nav-item nav-link nav-menu" href="#">Features</a>
+            <a class="nav-item nav-link nav-menu" href="#">Kursus</a>
             <a class="nav-item nav-link nav-menu" href="#">Tentang Kami</a>
             <button class="btn btn-primary tombol" type="button" data-toggle="modal" data-target="#login_modal">Login</button>
             <?php
         } else { ?>
           <a class="nav-item nav-link nav-menu" href="<?php echo base_url(); ?>member/profile">Profile</a>
-          <a class="nav-item nav-link nav-menu" href="#">Features</a>
+          <a class="nav-item nav-link nav-menu" href="<?php echo base_url(); ?>member/kursus">Kursus</a>
           <a class="nav-item nav-link nav-menu" href="#">Tentang Kami</a>
           <a href="<?php echo base_url(); ?>auth/logout" class="btn btn-primary tombol" role="button">Logout</a>
         <?php   

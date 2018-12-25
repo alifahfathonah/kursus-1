@@ -140,7 +140,7 @@
 
 .list-kursus{
   font-size: 12px;
-  width: 70%;
+  width: 800px;
   margin-left: 50px;
   margin-top: 10px;
 }
@@ -148,6 +148,13 @@
 .card-header{
   font-size: 14px;
   height: 40px;
+}
+
+.scroll-menu{
+  width: 800px;
+  height: 600px;
+  margin-left: 50px;
+  overflow-y: auto;
 }
 
 

@@ -12,7 +12,12 @@ foreach ($profil as $key ) {
    $foto = $key['link_foto'];
    $desk = $key['deskripsi'];
 }
-$foto = base_url().'assets/img/profile/'.$foto;
+if ($foto == NULL) {
+    $foto = base_url().'assets/img/user.png';
+} else {
+    $foto = base_url().'assets/img/profile/'.$foto;
+}
+
 
 
 ?>
@@ -26,8 +31,12 @@ $foto = base_url().'assets/img/profile/'.$foto;
             <div class="media-body">
                 <h5 class="mt-0"><?php echo $this->session->userdata('nama'); ?></h5>
                 <p class="sub"><?php echo $this->session->userdata('email'); ?></p>
+                <?php if ($desk == NULL) {
+                   echo " <p>-</p>";
+                } else {
+                    echo "<p>".$desk."</p>";
+                }?>
                 
-                <p><?php echo $desk; ?></p>
             </div>
             </div>
             </div>
@@ -58,7 +67,7 @@ $foto = base_url().'assets/img/profile/'.$foto;
                         <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#newkursus_modal">Buat Kursus</button>
                         </div>
                     </div>
-                    
+                    <div class="scroll-menu">
                     <?php foreach ($kursus as $y) { ?>
                     <div class="row">
                     <div class="card col-lg list-kursus"  >
@@ -83,7 +92,7 @@ $foto = base_url().'assets/img/profile/'.$foto;
                 <?php
                 }
                 ?>
-                    
+                </div>
                 </div>
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                 Nilai
