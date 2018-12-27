@@ -50,5 +50,11 @@ public function delete_data($table, $kondis){
     return true;
 }
 
+public function get_alldata($table){
+    $result = $this->db->get($table)->result_array();
+    return $result;
+
+}
+
 
 }

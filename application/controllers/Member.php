@@ -244,7 +244,10 @@ class Member extends CI_Controller{
     }
 
     function kursus(){
-        $this->load->view('guru/kursus');
+        $this->data['kursus']=$this->system_model->get_alldata('tb_kursus');
+        $this->data['profile']=$this->system_model->get_alldata('tb_profile');
+        
+        $this->load->view('guru/kursus', $this->data);
     }
 
 }
