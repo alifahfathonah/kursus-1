@@ -39,7 +39,7 @@
                    $img = $this->system_model->get_where('tb_profile','id_member',$guru);
                    foreach ($img as $key) {
                       $foto = $key['link_foto'];
-
+                    $telp = $key['nomer_telp'];
                       if ($foto == NULL) {
                         $foto = base_url().'assets/img/user.png';
                        
@@ -48,16 +48,29 @@
                     }
                    }
                 ?>
-                <div class="media list-kursus">
-                
-                <img class="mr-3 rounded-circle profil-photo" src="<?= $foto; ?>" alt="Generic placeholder image">
                
+                <div class="media list-kursus">
+                <a href="member/profile">
+                <img class="align-self-start mr-3 rounded-circle profil-photo" src="<?= $foto; ?>" alt="Generic placeholder image">
+                </a>
                     <div class="media-body">
-                        
+                    <a href="member/detail_kursus?id=<?php echo $k['id_kursus']; ?>">
                         <h5 class="mt-0"><?= $k['judul_kursus']; ?></h5>
-                        <?= $k['deskripsi_kursus']; ?>
+                    </a>
+                    <div class="row">
+                        <div class="col-4">
+                        <?= $telp; ?>
+                        </div>
+                        <div class="col-2">
+                        <?= $k['durasi_kursus']; ?> X Pertemuan
+                        </div>
+                        <div class="col-2">
+                            Rp <?= number_format($k['harga_kursus'],2,",","."); ?> /pertemuan
+                        </div>
+                    </div>
                     </div>
                 </div>
+               
                 <?php
                 }
                 ?>
