@@ -84,13 +84,14 @@
                         </div>
                      </div>
                 </div>
-            </div>
-        </div>
-        <div class="card-footer">
-            <div id="pagination">
+                <div class="card-footer">
+                    <div id="pagination">
 
+                    </div>
+            </div>
             </div>
         </div>
+        
     </div>
     
 </body>
@@ -140,7 +141,7 @@ $(document).ready(function(){
       var data_kursus = "<div class='media list-kursus'>";
       data_kursus += "<img class='align-self-start mr-3 rounded-circle profil-photo' src="+foto+" alt='Generic placeholder image'>";
       data_kursus += " <div class='media-body'>";
-      data_kursus += "<a href='member/detail_kursus?id="+id+">";
+      data_kursus += "<a href='member/detail_kursus?id="+id+"'>";
       data_kursus += "<h5 class='mt-0'>"+judul+"</h5></a>";
       data_kursus += "<div class='row'>";
       data_kursus += "<div class='col-4'>"+nama+"</div>";
