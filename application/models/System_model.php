@@ -56,5 +56,19 @@ public function get_alldata($table){
 
 }
 
+public function get_join($rowperpage, $rowno){
+    $this->db->select('*');
+    $this->db->from('tb_kursus');
+    $this->db->join('tb_profile', 'tb_profile.id_member = tb_kursus.id_guru');
+    $this->db->join('tb_member', 'tb_member.id_member = tb_kursus.id_guru');
+    //$this->db->where('tb_member.user_name','kil');
+    $this->db->limit($rowperpage,$rowno);
+    $query = $this->db->get()->result_array();
+
+    return $query;
+}
+
+
+
 
 }
