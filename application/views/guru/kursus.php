@@ -18,17 +18,17 @@
                             
                         <div class="input-group mb-3">
                     
-                        <select id="inputState" class="form-control">
-                            <option selected>Choose...</option>
+                        <select id="kond-cari" class="form-control">
+                            <option value="0" selected>Choose...</option>
                             <option value="judul_kursus">Judul</option>
                             <option value="deskripsi_kursus">Deskripsi Kursus</option>
                             <option value="user_name">Nama Guru</option>
                         </select>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Cari" >
+                            <input type="text" class="form-control" id="input-cari" placeholder="Cari" >
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button" id="button-addon2"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                <button class="btn btn-primary" type="button" id="button-cari">Cari</button>
                             </div>
                         </div>
                         </form>
@@ -39,53 +39,21 @@
                 <div class="row">
                     <div class="scroll-menu">
                         <div class="tampil-kursus" id="list_kursus">
-                            <?php 
-                            // foreach ($kursus as $k) {
-                            //     $guru = $k['id_guru'];
-
                            
-                            //     $foto = $k['link_foto'];
-                            //     $telp = $k['user_name'];
-                            //     if ($foto == NULL) {
-                            //         $foto = base_url().'assets/img/user.png';
-                                
-                            //     } else {
-                            //         $foto = base_url().'assets/img/profile/'.$foto;
-                            //     }
                            
-                            ?>
-               <!--
-                            <div class="media list-kursus">
-                
-                                <img class="align-self-start mr-3 rounded-circle profil-photo" src="<?//= $foto; ?>" alt="Generic placeholder image">
-              
-                                    <div class="media-body">
-                                    <a href="member/detail_kursus?id=<?php //echo $k['id_kursus']; ?>">
-                                        <h5 class="mt-0"><?//= $k['judul_kursus']; ?></h5>
-                                    </a>
-                                        <div class="row">
-                                            <div class="col-4">
-                                            <?//= $telp; ?>
-                                            </div>
-                                            <div class="col-2">
-                                            <?//= $k['durasi_kursus']; ?> X Pertemuan
-                                            </div>
-                                            <div class="col-2">
-                                                Rp <?//= number_format($k['harga_kursus'],2,",","."); ?> /pertemuan
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
                
-                            <?php
-                            //}
-                            ?>
-                            -->
+                           
                         </div>
                      </div>
                 </div>
                 <div class="card-footer">
-                    <div id="pagination">
+                    <div class="row">
+                        <div id="pagination">
+
+                        </div>
+                        <div class="ml-auto">
+                                <label for="">Halaman</label>
+                        </div>
 
                     </div>
             </div>
@@ -103,15 +71,30 @@ $(document).ready(function(){
  $('#pagination').on('click','a',function(e){
    e.preventDefault(); 
    var pageno = $(this).attr('data-ci-pagination-page');
-   loadPagination(pageno);
+   var pencarian = $('#kond-cari').val();
+    var cari = $('#input-cari').val();
+   loadPagination(pageno,pencarian,cari);
+ });
+
+ $('#button-cari').click(function(){
+    var pencarian = $('#kond-cari').val();
+    var cari = $('#input-cari').val();
+    var pageno = 0;
+    //alert(pencarian);
+    loadPagination(pageno,pencarian,cari);
  });
 
  loadPagination(0);
 
- function loadPagination(pagno){
+ function loadPagination(pagno,kond,cari){
+     var data_cari = 'per_page='+pagno;
+     if (kond != '0') {
+      var data_cari = 'per_page='+pagno+'&kond='+kond+'&cari='+cari;
+     }
    $.ajax({
-     url: 'page_kursus/'+pagno,
+     url: 'page_kursus',
      type: 'get',
+     data: data_cari,
      dataType: 'json',
      success: function(response){
         $('#pagination').html(response.pagination);

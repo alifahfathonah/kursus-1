@@ -68,6 +68,27 @@ public function get_join($rowperpage, $rowno){
     return $query;
 }
 
+public function count_cari($column, $data){
+    $this->db->select('*');
+    $this->db->from('tb_kursus');
+    $this->db->join('tb_profile', 'tb_profile.id_member = tb_kursus.id_guru');
+    $this->db->join('tb_member', 'tb_member.id_member = tb_kursus.id_guru');
+    $this->db->like($column,$data);
+    $result = $this->db->get()->num_rows();
+    return $result;
+}
+
+public function get_condition($rowperpage, $rowno, $column, $data){
+    $this->db->select('*');
+    $this->db->from('tb_kursus');
+    $this->db->join('tb_profile', 'tb_profile.id_member = tb_kursus.id_guru');
+    $this->db->join('tb_member', 'tb_member.id_member = tb_kursus.id_guru');
+    $this->db->like($column,$data);
+    $this->db->limit($rowperpage,$rowno);
+    $query = $this->db->get()->result_array();
+
+    return $query;
+}
 
 
 

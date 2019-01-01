@@ -250,27 +250,52 @@ class Member extends CI_Controller{
         $this->load->view('guru/kursus');
     }
 
-    function page_kursus($rowno=0){
+    function page_kursus(){
+
         $this->load->helper('url');
         $this->load->library('pagination');
+        $rowperpage = 1;
 
-        $rowperpage = 2;
- 
+        $rowno= $this->input->get('per_page');
+        $kond = $this->input->get('kond');
+        $cari = $this->input->get('cari');
         if($rowno != 0){
-          $rowno = ($rowno-1) * $rowperpage;
-        }
-  
-        $allcount = $this->db->count_all('tb_kursus');
- 
-        //$this->db->limit($rowperpage, $rowno);
-        //$users_record = $this->db->get('posts')->result_array();
+            $rowno = ($rowno-1) * $rowperpage;
+          }
 
-        $users_record = $this->system_model->get_join($rowperpage, $rowno);
+        if ($kond == 'undefined' || empty($kond)) {
+
+            $allcount = $this->db->count_all('tb_kursus');
+            $users_record = $this->system_model->get_join($rowperpage, $rowno);
+
+         }else{
+           if ($kond == 'judul_kursus') {
+               $kond = 'tb_kursus.judul_kursus';
+           } elseif ($kond == 'deskripsi_kursus') {
+              $kond = 'tb_kursus.deskripsi_kursus';
+           } elseif($kond == 'user_name'){
+             $kond = 'tb_member.user_name';
+           }
+            $allcount = $this->system_model->count_cari($kond,$cari);
+            $users_record = $this->system_model->get_condition($rowperpage, $rowno, $kond, $cari);
+         }
+       
+
+       
+ 
+       
+  
+       
+ 
+       
+
+      
   
         $config['base_url'] = base_url().'member/page_kursus';
         $config['use_page_numbers'] = TRUE;
         $config['total_rows'] = $allcount;
         $config['per_page'] = $rowperpage;
+        $config['page_query_string'] = TRUE;
  
         $config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination">';
         $config['full_tag_close']   = '</ul></nav></div>';
