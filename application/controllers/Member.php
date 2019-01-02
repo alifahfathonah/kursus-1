@@ -279,18 +279,7 @@ class Member extends CI_Controller{
             $allcount = $this->system_model->count_cari($kond,$cari);
             $users_record = $this->system_model->get_condition($rowperpage, $rowno, $kond, $cari);
          }
-       
-
-       
- 
-       
-  
-       
- 
-       
-
-      
-  
+     
         $config['base_url'] = base_url().'member/page_kursus';
         $config['use_page_numbers'] = TRUE;
         $config['total_rows'] = $allcount;
@@ -321,6 +310,13 @@ class Member extends CI_Controller{
         $data['row'] = $rowno;
  
         echo json_encode($data);
+    }
+
+    function detail_kursus(){
+        $id = $this->input->get('id');
+        $this->data['kursus'] = $this->system_model->get_condition(1,0,'tb_kursus.id_kursus',$id);
+        $this->load->view('siswa/detail_kursus', $this->data);
+
     }
 
 }
