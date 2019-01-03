@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Detail Kursus</title>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBIw73fP4zmZ_KUeK0NBaf0U5_fc9aiZMs"></script>
 </head>
 <?php include './application/views/header.php'; ?> 
 <body>
@@ -23,6 +24,7 @@ foreach ($kursus as $k) {
     $telp = $k['nomer_telp'];
     $foto = $k['link_foto'];
     $alamat = $k['alamat'];
+    $id_member = $k['id_member'];
 }
 
 if ($foto == NULL) {
@@ -58,6 +60,9 @@ if ($foto == NULL) {
                     </div>
                     <div class="row justify-content-center">
                     <i>Jl. ikan paus no. 38, kersikan, bangil</i>
+                    </div>
+                    <div class="row justify-content-center">
+                    <div id="googleMap" style="width:100%;height:380px;"></div>
                     </div>
                 </div>
             </div>
@@ -155,9 +160,16 @@ if ($foto == NULL) {
         </button>
       </div>
       <div class="modal-body">
-        <form>
-        
-        </form>
+            <form>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Jadwal Pertemuan</label>
+                    <input type="date" class="form-control" id="tanggal_kursus" >
+                </div>
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Jam Pertemuan</label>
+                    <input type="time" class="form-control" id="jam_kursus" >
+                </div>
+            </form>
       </div>
       <div class="modal-footer">
           <div class="row justify-content-center">
@@ -180,8 +192,49 @@ if ($foto == NULL) {
 <script type="text/javascript">
 $(document).ready(function(){
     $('#acc_kursus').click(function(){
-        var point = $('#biaya_kursus').val();
-        alert(point);
+        var jam = $('#jam_kursus').val();
+        var tanggal = $('#tanggal_kursus').val();
+        var link = 'set_jadwal';
+        var id_kursus = '<?= $id_kursus; ?>';
+        var id_member = '<?= $id_member; ?>';
+
+       // alert(point);
+
+        $.ajax({
+           type: "POST",
+           url: link,
+           data: 'id_kursus='+id_kursus+'&id_member='+id_member+'&tanggal='+tanggal+'&jam='+jam,
+                    
+           success: function(response){
+              if(response== "success")
+               {
+                
+                alert(response);
+                window.location = 'kursus';
+                  
+               }
+               else
+               {
+                   alert(response);
+                   
+               }
+              
+           } 
+       });
+
     });
+    function initialize() {
+        var propertiPeta = {
+            center:new google.maps.LatLng(-8.5830695,116.3202515),
+            zoom:9,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+        
+        var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
+        }
+
+        // event jendela di-load  
+        google.maps.event.addDomListener(window, 'load', initialize);
+   
 });
 </script>

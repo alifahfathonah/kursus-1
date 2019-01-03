@@ -16,6 +16,7 @@ class Member extends CI_Controller{
                     $id = $this->session->userdata('id_member');
                     $this->data['profil'] = $this->system_model->get_where('tb_profile','id_member',$id);
                     $this->data['kursus'] = $this->system_model->get_where('tb_kursus','id_guru',$id);
+                    $this->data['jadwal'] = $this->system_model->get_jadwal(5,0,'tb_kursus.id_guru',$id);
                     $this->load->view('guru/home', $this->data);
                 }else {
                     $this->load->view('siswa/home');
@@ -318,5 +319,31 @@ class Member extends CI_Controller{
         $this->load->view('siswa/detail_kursus', $this->data);
 
     }
+
+    function set_jadwal(){
+        $id_kursus = $this->input->post('id_kursus');
+        $id_member = $this->input->post('id_member');
+        $tanggal = $this->input->post('tanggal');
+        $jam = $this->input->post('jam');
+        $id_jadwal = $this->uuid->v4();
+
+        $data = array(
+            'id_jadwal'=> $id_jadwal,
+            'id_kursus'=> $id_kursus,
+            'id_member'=> $id_member,
+            'tanggal'=> $tanggal,
+            'jam'=>$jam
+        );
+
+        $simpan = $this->system_model->insert_into ('tb_jadwal',$data);  
+
+        if ($simpan) {
+           echo "success";
+        } else {
+            echo "gagal simpan";
+        }
+    }
+
+    
 
 }

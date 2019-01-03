@@ -57,8 +57,9 @@ if ($foto == NULL) {
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <div data-spy="scroll" data-offset="0">
-                        Jadwal
-                        
+                      <?php foreach ($jadwal as $x) {
+                         echo $x['jam'];
+                      } ?>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jan 02, 2019 at 09:57 PM
+-- Generation Time: Jan 03, 2019 at 03:32 PM
 -- Server version: 5.6.38
 -- PHP Version: 7.2.1
 
@@ -13,6 +13,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_kursus`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_jadwal`
+--
+
+CREATE TABLE `tb_jadwal` (
+  `id_jadwal` varchar(50) NOT NULL,
+  `id_kursus` varchar(50) NOT NULL,
+  `id_member` varchar(50) NOT NULL,
+  `tanggal` date NOT NULL,
+  `jam` time NOT NULL,
+  `pertemuan` int(10) NOT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tb_jadwal`
+--
+
+INSERT INTO `tb_jadwal` (`id_jadwal`, `id_kursus`, `id_member`, `tanggal`, `jam`, `pertemuan`, `status`) VALUES
+('8f6f2b8a-d559-453a-92a8-b6f883118061', '547aef3a-2780-4c24-9867-b8744d0f00a3', 'f535e870-5943-4e0b-b9b7-ae6825718c6e', '2019-01-19', '09:30:00', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -100,6 +123,12 @@ INSERT INTO `tb_profile` (`id_member`, `alamat`, `jenis_kelamin`, `tanggal_lahir
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `tb_jadwal`
+--
+ALTER TABLE `tb_jadwal`
+  ADD PRIMARY KEY (`id_jadwal`);
 
 --
 -- Indexes for table `tb_kursus`

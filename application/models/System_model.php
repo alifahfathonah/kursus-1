@@ -90,6 +90,17 @@ public function get_condition($rowperpage, $rowno, $column, $data){
     return $query;
 }
 
+public function get_jadwal($rowperpage, $rowno, $column, $data){
+    $this->db->select('*');
+    $this->db->from('tb_jadwal');
+    $this->db->join('tb_kursus', 'tb_kursus.id_kursus = tb_jadwal.id_kursus');
+    $this->db->join('tb_member', 'tb_member.id_member = tb_kursus.id_guru');
+    $this->db->like($column,$data);
+    $this->db->limit($rowperpage,$rowno);
+    $query = $this->db->get()->result_array();
+
+    return $query;
+}
 
 
 }
