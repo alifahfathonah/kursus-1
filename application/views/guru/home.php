@@ -57,9 +57,28 @@ if ($foto == NULL) {
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <div data-spy="scroll" data-offset="0">
-                      <?php foreach ($jadwal as $x) {
-                         echo $x['jam'];
-                      } ?>
+                      <?php 
+                        foreach ($jadwal as $x) {?>
+                        
+                        <div class="alert alert-danger" role="alert">
+                           <div class="row">
+                           <div class="col-md-2">
+                            <?= $x['judul_kursus']; ?>
+                           </div>
+                           <div class="col-md-2">
+                           <?= $x['tanggal']; ?>
+                           </div>
+                           <div class="col-md-2">
+                           <?= $x['jam']; ?>
+                           </div>
+                           <div class="col-md-2">
+                           <?= $x['user_name']; ?>
+                           </div>
+                            </div>
+                        </div>
+                        <?php
+                        }
+                      ?>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">

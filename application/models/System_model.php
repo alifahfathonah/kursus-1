@@ -102,5 +102,16 @@ public function get_jadwal($rowperpage, $rowno, $column, $data){
     return $query;
 }
 
+public function join_2(){
+    $this->db->select('*');
+    $this->db->from('tb_profile');
+    $this->db->join('tb_kursus', 'tb_kursus.id_guru = tb_profile.id_member');
+    $this->db->like($column,$data);
+    $this->db->limit($rowperpage,$rowno);
+    $query = $this->db->get()->result_array();
+
+    return $query;
+}
+
 
 }
