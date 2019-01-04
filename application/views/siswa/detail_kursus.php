@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Detail Kursus</title>
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBIw73fP4zmZ_KUeK0NBaf0U5_fc9aiZMs"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key="></script>
 </head>
 <?php include './application/views/header.php'; ?> 
 <body>
