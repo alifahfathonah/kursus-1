@@ -14,7 +14,11 @@ class Auth extends CI_Controller{
                 $id = $this->session->userdata('id_member');
                 $this->data['profil'] = $this->system_model->get_where('tb_profile','id_member',$id);
                 $this->data['kursus'] = $this->system_model->get_where('tb_kursus','id_guru',$id);
-                $this->data['jadwal'] = $this->system_model->get_jadwal(5,0,'tb_kursus.id_guru',$id);
+                $kon = array(
+                    'tb_jadwal.status' => NULL
+                );
+                $p = "tb_kursus.id_guru = '$id'";
+                $this->data['jadwal'] = $this->system_model->get_jadwal(5,0,$p, $kon);
                 $this->load->view('guru/home', $this->data);
                 
             }else {

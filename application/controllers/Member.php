@@ -16,7 +16,11 @@ class Member extends CI_Controller{
                     $id = $this->session->userdata('id_member');
                     $this->data['profil'] = $this->system_model->get_where('tb_profile','id_member',$id);
                     $this->data['kursus'] = $this->system_model->get_where('tb_kursus','id_guru',$id);
-                    $this->data['jadwal'] = $this->system_model->get_jadwal(5,0,'tb_kursus.id_guru',$id);
+                    $kon = array(
+                        'tb_jadwal.status' => NULL
+                    );
+                    $p = "tb_kursus.id_guru = '$id'";
+                    $this->data['jadwal'] = $this->system_model->get_jadwal(5,0,$p, $kon);
                     $this->load->view('guru/home', $this->data);
                 }else {
                     $this->load->view('siswa/home');
@@ -252,11 +256,16 @@ class Member extends CI_Controller{
     }
 
     function page_kursus(){
-
+        if ($this->session->userdata('login_status')==false) {
+            $this->load->view('landing');
+         }else {
+        
         $this->load->helper('url');
         $this->load->library('pagination');
         $rowperpage = 1;
 
+        $id_member = $this->session->userdata('id_member');
+        
         $rowno= $this->input->get('per_page');
         $kond = $this->input->get('kond');
         $cari = $this->input->get('cari');
@@ -266,8 +275,8 @@ class Member extends CI_Controller{
 
         if ($kond == 'undefined' || empty($kond)) {
 
-            $allcount = $this->db->count_all('tb_kursus');
-            $users_record = $this->system_model->get_join($rowperpage, $rowno);
+            $allcount = $this->system_model->total_record('tb_kursus',$id_member);
+            $users_record = $this->system_model->get_join($rowperpage, $rowno, $id_member);
 
          }else{
            if ($kond == 'judul_kursus') {
@@ -277,8 +286,8 @@ class Member extends CI_Controller{
            } elseif($kond == 'user_name'){
              $kond = 'tb_member.user_name';
            }
-            $allcount = $this->system_model->count_cari($kond,$cari);
-            $users_record = $this->system_model->get_condition($rowperpage, $rowno, $kond, $cari);
+            $allcount = $this->system_model->count_cari($kond,$cari, $id_member);
+            $users_record = $this->system_model->get_condition($rowperpage, $rowno, $kond, $cari, $id_member);
          }
      
         $config['base_url'] = base_url().'member/page_kursus';
@@ -312,10 +321,10 @@ class Member extends CI_Controller{
  
         echo json_encode($data);
     }
-
+    }
     function detail_kursus(){
         $id = $this->input->get('id');
-        $this->data['kursus'] = $this->system_model->get_condition(1,0,'tb_kursus.id_kursus',$id);
+        $this->data['kursus'] = $this->system_model->get_detail(1,0,'tb_kursus.id_kursus',$id);
         $this->load->view('siswa/detail_kursus', $this->data);
 
     }
@@ -344,6 +353,24 @@ class Member extends CI_Controller{
         }
     }
 
+    function acc_jadwal(){
+        $id_jadwal = $this->input->post('id_jadwal');
+        $data = array(
+            'status'=>"aprove"
+        );
+
+        $kond = array(
+            'id_jadwal'=> $id_jadwal
+        );
+
+        $ubah = $this->system_model->update_data('tb_jadwal', $data, $kond);
+
+        if ($ubah) {
+           echo "success";
+        } else {
+            echo "gagal";
+        }
+    }
     
 
 }

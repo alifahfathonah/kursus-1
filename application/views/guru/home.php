@@ -59,7 +59,8 @@ if ($foto == NULL) {
                     <div data-spy="scroll" data-offset="0">
                       <?php 
                         foreach ($jadwal as $x) {?>
-                        
+                       
+                        <a href="#" id="<?= $x['id_jadwal']; ?>" class="list_jadwal">
                         <div class="alert alert-danger" role="alert">
                            <div class="row">
                            <div class="col-md-2">
@@ -74,8 +75,10 @@ if ($foto == NULL) {
                            <div class="col-md-2">
                            <?= $x['user_name']; ?>
                            </div>
+                          
                             </div>
                         </div>
+                        </a>
                         <?php
                         }
                       ?>
@@ -255,12 +258,48 @@ $(document).ready(function(){
         e.preventDevault();
     });
 
-    // $('.list-kursus').click(function(){
-    //     var x = document.getElementsByClassName("list-kursus")[0].id;
-    //     alert(x);
-    // });
+   $('.list_jadwal').click(function(e){
 
+       var id = this.id;
+
+   //alert(id);
+    var x =  confirm("Terima Jadwal ini?");
+
+    if (x==true) {
+       var link = "member/acc_jadwal"
+
+       update_data(id,link);
+    }else{
+        //alert('false');
+    }
+
+    e.preventDevault();
+   });
    
+   function update_data(id, link){
+
+    $.ajax({
+           type: "POST",
+           url: link,
+           data: 'id_jadwal='+id,
+                    
+           success: function(response){
+              if(response== "success")
+               {
+                
+                alert(response);
+                //window.location = 'kursus';
+                  
+               }
+               else
+               {
+                   alert(response);
+                   
+               }
+              
+           } 
+       });
+   }
 
 
 });

@@ -56,29 +56,52 @@ public function get_alldata($table){
 
 }
 
-public function get_join($rowperpage, $rowno){
+public function total_record($table,$id){
+    $this->db->select('*');
+    $this->db->from($table);
+    $this->db->where_not_in('id_guru',$id);
+   $query=  $this->db->count_all_results();
+
+   return $query;
+}
+
+public function get_join($rowperpage, $rowno, $id){
     $this->db->select('*');
     $this->db->from('tb_kursus');
     $this->db->join('tb_profile', 'tb_profile.id_member = tb_kursus.id_guru');
     $this->db->join('tb_member', 'tb_member.id_member = tb_kursus.id_guru');
-   
+    $this->db->where_not_in('tb_kursus.id_guru',$id);
     $this->db->limit($rowperpage,$rowno);
     $query = $this->db->get()->result_array();
 
     return $query;
 }
 
-public function count_cari($column, $data){
+public function count_cari($column, $data, $id){
     $this->db->select('*');
     $this->db->from('tb_kursus');
     $this->db->join('tb_profile', 'tb_profile.id_member = tb_kursus.id_guru');
     $this->db->join('tb_member', 'tb_member.id_member = tb_kursus.id_guru');
     $this->db->like($column,$data);
+    $this->db->where_not_in('tb_kursus.id_guru',$id);
     $result = $this->db->get()->num_rows();
     return $result;
 }
 
-public function get_condition($rowperpage, $rowno, $column, $data){
+public function get_condition($rowperpage, $rowno, $column, $data, $id){
+    $this->db->select('*');
+    $this->db->from('tb_kursus');
+    $this->db->join('tb_profile', 'tb_profile.id_member = tb_kursus.id_guru');
+    $this->db->join('tb_member', 'tb_member.id_member = tb_kursus.id_guru');
+    $this->db->like($column,$data);
+    $this->db->where_not_in('tb_kursus.id_guru',$id);
+    $this->db->limit($rowperpage,$rowno);
+    $query = $this->db->get()->result_array();
+
+    return $query;
+}
+
+public function get_detail($rowperpage, $rowno, $column, $data){
     $this->db->select('*');
     $this->db->from('tb_kursus');
     $this->db->join('tb_profile', 'tb_profile.id_member = tb_kursus.id_guru');
@@ -90,12 +113,13 @@ public function get_condition($rowperpage, $rowno, $column, $data){
     return $query;
 }
 
-public function get_jadwal($rowperpage, $rowno, $column, $data){
+public function get_jadwal($rowperpage, $rowno, $p, $syarat){
     $this->db->select('*');
     $this->db->from('tb_jadwal');
-    $this->db->join('tb_kursus', 'tb_kursus.id_kursus = tb_jadwal.id_kursus');
-    $this->db->join('tb_member', 'tb_member.id_member = tb_kursus.id_guru');
-    $this->db->like($column,$data);
+    $this->db->join('tb_kursus', 'tb_jadwal.id_kursus = tb_kursus.id_kursus');
+    $this->db->join('tb_member', 'tb_jadwal.id_member= tb_member.id_member');
+    $this->db->where($p);
+    $this->db->where($syarat);
     $this->db->limit($rowperpage,$rowno);
     $query = $this->db->get()->result_array();
 

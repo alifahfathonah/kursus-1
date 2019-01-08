@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Detail Kursus</title>
-    <script src="http://maps.googleapis.com/maps/api/js?key="></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
 </head>
 <?php include './application/views/header.php'; ?> 
 <body>
@@ -24,9 +24,9 @@ foreach ($kursus as $k) {
     $telp = $k['nomer_telp'];
     $foto = $k['link_foto'];
     $alamat = $k['alamat'];
-    $id_member = $k['id_member'];
+    //$id_member = $k['id_member'];
 }
-
+$id_member = $this->session->userdata('id_member');
 if ($foto == NULL) {
     $foto = base_url()."assets/img/user.png";
 } else {
